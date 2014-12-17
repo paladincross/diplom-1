@@ -1,0 +1,5 @@
+fsn_bot:
+    resource: "@FSNBotBundle/Resources/config/routing.yml"
+    prefix:   /
+
+

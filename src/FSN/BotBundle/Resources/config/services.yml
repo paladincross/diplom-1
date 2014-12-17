@@ -1,0 +1,4 @@
+services:
+#    fsn_bot.example:
+#        class: FSN\BotBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
