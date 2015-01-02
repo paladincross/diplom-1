@@ -42,9 +42,9 @@ class __TwigTemplate_0e8f8f023b6bb5eee77e5f231e5ee7490a2691c325b3f7abafc245740de
 ";
         // line 12
         $this->displayBlock('body', $context, $blocks);
-        // line 20
-        $this->displayBlock('javascripts', $context, $blocks);
         // line 21
+        $this->displayBlock('javascripts', $context, $blocks);
+        // line 22
         echo "</body>
 </html>
 ";
@@ -67,23 +67,19 @@ class __TwigTemplate_0e8f8f023b6bb5eee77e5f231e5ee7490a2691c325b3f7abafc245740de
         // line 13
         echo "    <div align = \"center\">
     <img src=\"http://switchtheshift.files.wordpress.com/2011/01/film12.jpg\" alt=\"Mountain View\" style=\"width:600px;height:250px\">
-    ";
-        // line 15
-        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : null), 'form_start');
-        echo "
-    ";
+        ";
         // line 16
+        echo "        <form action='films' method=\"post\">
+            ";
+        // line 17
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : null), 'widget');
         echo "
-    ";
-        // line 17
-        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : null), 'form_end');
-        echo "
+        </form>
     </div>
 ";
     }
 
-    // line 20
+    // line 21
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -100,6 +96,6 @@ class __TwigTemplate_0e8f8f023b6bb5eee77e5f231e5ee7490a2691c325b3f7abafc245740de
 
     public function getDebugInfo()
     {
-        return array (  87 => 20,  80 => 17,  76 => 16,  72 => 15,  68 => 13,  65 => 12,  60 => 6,  54 => 5,  48 => 21,  46 => 20,  44 => 12,  35 => 7,  33 => 6,  29 => 5,  23 => 1,);
+        return array (  83 => 21,  75 => 17,  72 => 16,  68 => 13,  65 => 12,  60 => 6,  54 => 5,  48 => 22,  46 => 21,  44 => 12,  35 => 7,  33 => 6,  29 => 5,  23 => 1,);
     }
 }

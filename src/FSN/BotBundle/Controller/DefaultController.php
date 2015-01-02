@@ -11,23 +11,30 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $link = new Link();
-
         $form = $this->createFormBuilder($link)
-            ->add('link', 'url')
+            ->add('link', 'text')
             ->add('save', 'submit', array('label' => 'Gooooooooo!'))
             ->getForm();
-
-//        $form->handleRequest($request);
-//
-//        if ($form->isValid()) {
-//            echo 11111;
-//            die();
-//            // perform some action, such as saving the task to the database
-//
-//           // return $this->redirect($this->generateUrl('task_success'));
+//        if ($request->getMethod() == 'POST') {
+//            var_dump($_POST);
+//            if($_POST['form']['link'])
+//            {
+//                echo $_POST['form']['link'];
+//                unset($_POST);
+//            }
 //        }
         return $this->render('FSNBotBundle:Default:index.html.twig', array(
             'form' => $form->createView(),
         ));
     }
+
+    public function startAction()
+    {
+
+        $link = $_POST['form']['link'];
+        unset($_POST);
+        return $this->render('FSNBotBundle:Default:start.html.twig', array('link' => $link));
+    }
+
+
 }

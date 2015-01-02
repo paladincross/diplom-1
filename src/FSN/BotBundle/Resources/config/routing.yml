@@ -1,3 +1,7 @@
 fsn_bot_homepage:
     path:     /main_page/start
     defaults: { _controller: FSNBotBundle:Default:index }
+
+fsn_start_page:
+    path:     /main_page/films
+    defaults: { _controller: FSNBotBundle:Default:start }

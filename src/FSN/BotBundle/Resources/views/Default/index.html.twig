@@ -12,9 +12,10 @@
 {% block body %}
     <div align = "center">
     <img src="http://switchtheshift.files.wordpress.com/2011/01/film12.jpg" alt="Mountain View" style="width:600px;height:250px">
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+        {#action="{{ path('star') }}#}
+        <form action='films' method="post">
+            {{ form_widget(form) }}
+        </form>
     </div>
 {% endblock %}
 {% block javascripts %}{% endblock %}

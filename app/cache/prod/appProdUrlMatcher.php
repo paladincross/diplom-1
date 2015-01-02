@@ -27,9 +27,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $context = $this->context;
         $request = $this->request;
 
-        // fsn_bot_homepage
-        if ($pathinfo === '/main_page/start') {
-            return array (  '_controller' => 'FSN\\BotBundle\\Controller\\DefaultController::indexAction',  '_route' => 'fsn_bot_homepage',);
+        if (0 === strpos($pathinfo, '/main_page')) {
+            // fsn_bot_homepage
+            if ($pathinfo === '/main_page/start') {
+                return array (  '_controller' => 'FSN\\BotBundle\\Controller\\DefaultController::indexAction',  '_route' => 'fsn_bot_homepage',);
+            }
+
+            // fsn_start_page
+            if ($pathinfo === '/main_page/films') {
+                return array (  '_controller' => 'FSN\\BotBundle\\Controller\\DefaultController::startAction',  '_route' => 'fsn_start_page',);
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
