@@ -28,8 +28,8 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $request = $this->request;
 
         // fsn_bot_homepage
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fsn_bot_homepage')), array (  '_controller' => 'FSN\\BotBundle\\Controller\\DefaultController::indexAction',));
+        if ($pathinfo === '/main_page/start') {
+            return array (  '_controller' => 'FSN\\BotBundle\\Controller\\DefaultController::indexAction',  '_route' => 'fsn_bot_homepage',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

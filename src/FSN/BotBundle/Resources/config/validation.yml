@@ -1,0 +1,4 @@
+FSNBotBundle\Entity\Link:
+    properties:
+        link:
+            - NotBlank: ~

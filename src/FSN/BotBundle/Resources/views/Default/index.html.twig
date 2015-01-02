@@ -1,1 +1,22 @@
-Hello {{ name }}!
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+    <h1 align="center">Welcome to FSN!!!</h1>
+<br><br>
+{% block body %}
+    <div align = "center">
+    <img src="http://switchtheshift.files.wordpress.com/2011/01/film12.jpg" alt="Mountain View" style="width:600px;height:250px">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    </div>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>
