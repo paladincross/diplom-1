@@ -1,4 +1,9 @@
+parameters:
+  fsn.similar_anime_manager.class: FSN\BotBundle\Manager\SimilarAnimeManager.php
+
 services:
-#    fsn_bot.example:
+  fsn.similar_anime_manager:
+            class: %fsn.similar_anime_manager.class%
+#    fs.n_bot.example:
 #        class: FSN\BotBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]

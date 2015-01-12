@@ -66,7 +66,7 @@ class __TwigTemplate_0e8f8f023b6bb5eee77e5f231e5ee7490a2691c325b3f7abafc245740de
     {
         // line 13
         echo "    <div align = \"center\">
-    <img src=\"http://switchtheshift.files.wordpress.com/2011/01/film12.jpg\" alt=\"Mountain View\" style=\"width:600px;height:250px\">
+    <img src=\"https://s-media-cache-ak0.pinimg.com/236x/5f/ca/87/5fca8757ca3b1c49e212a129326bcf2b.jpg\" alt=\"Mountain View\" style=\"width:250px;height:250px\">
         ";
         // line 16
         echo "        <form action='films' method=\"post\">
