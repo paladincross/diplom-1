@@ -32,19 +32,64 @@ class __TwigTemplate_0e8f8f023b6bb5eee77e5f231e5ee7490a2691c325b3f7abafc245740de
         // line 6
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 7
-        echo "    <link rel=\"icon\" type=\"image/x-icon\" href=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("favicon.ico"), "html", null, true);
-        echo "\" />
+        echo "    <style>
+        .bouncing-boat {
+            margin-left: 0;
+            cursor: pointer;
+            -webkit-transition: margin-left 1s ease-in-out;
+            -moz-transition: margin-left 1s ease-in-out;
+            -o-transition: margin-left 1s ease-in-out;
+            -ms-transition: margin-left 1s ease-in-out;
+        }
+
+        /* переворот картинки через CSS */
+        .flip-horizontal {
+            -webkit-transform: scaleX(-1);
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -ms-transform: scaleX(-1);
+            filter: fliph; /* IE<10 */
+        }
+
+    </style>
 </head>
 <body>
+
+<script>
+    function bounceBoat(elem) {
+
+        elem.onclick = null; // следующий клик не испортит анимацию
+
+        function go() {
+            var marginLeft = parseInt(elem.style.marginLeft) || 0;
+
+            if (marginLeft == 0) {
+                elem.className = 'bouncing-boat';
+            } else {
+                elem.className = 'bouncing-boat flip-horizontal';
+            }
+
+            elem.style.marginLeft = (marginLeft ? 0 : 300) + 'px';
+
+        }
+
+        go();
+
+        elem.addEventListener('transitionend', go, false); /* на будущее */
+        elem.addEventListener('webkitTransitionEnd', go, false);
+        elem.addEventListener('mozTransitionEnd', go, false);
+        elem.addEventListener('oTransitionEnd', go, false);
+        elem.addEventListener('msTransitionEnd', go, false);
+    }
+</script>
     <h1 align=\"center\">Welcome to FSN!!!</h1>
 <br><br>
 ";
-        // line 12
+        // line 59
         $this->displayBlock('body', $context, $blocks);
-        // line 21
+        // line 68
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 22
+        // line 69
         echo "</body>
 </html>
 ";
@@ -61,25 +106,24 @@ class __TwigTemplate_0e8f8f023b6bb5eee77e5f231e5ee7490a2691c325b3f7abafc245740de
     {
     }
 
-    // line 12
+    // line 59
     public function block_body($context, array $blocks = array())
     {
-        // line 13
+        // line 60
         echo "    <div align = \"center\">
-    <img src=\"https://s-media-cache-ak0.pinimg.com/236x/5f/ca/87/5fca8757ca3b1c49e212a129326bcf2b.jpg\" alt=\"Mountain View\" style=\"width:250px;height:250px\">
-        ";
-        // line 16
-        echo "        <form action='films' method=\"post\">
+        <form action='films' method=\"post\">
+        <img src=\"http://img3.wikia.nocookie.net/__cb20130614090906/spice-and-wolf/ru/images/thumb/6/6b/Horochibi.png/205px-Horochibi.png\" class=\"bouncing-boat\" >
             ";
-        // line 17
+        // line 63
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : null), 'widget');
         echo "
+            <button onclick=\"bounceBoat(document.getElementsByTagName('img')[0])\">Gooooooooo!</button>
         </form>
     </div>
 ";
     }
 
-    // line 21
+    // line 68
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -89,13 +133,8 @@ class __TwigTemplate_0e8f8f023b6bb5eee77e5f231e5ee7490a2691c325b3f7abafc245740de
         return "FSNBotBundle:Default:index.html.twig";
     }
 
-    public function isTraitable()
-    {
-        return false;
-    }
-
     public function getDebugInfo()
     {
-        return array (  83 => 21,  75 => 17,  72 => 16,  68 => 13,  65 => 12,  60 => 6,  54 => 5,  48 => 22,  46 => 21,  44 => 12,  35 => 7,  33 => 6,  29 => 5,  23 => 1,);
+        return array (  127 => 68,  118 => 63,  113 => 60,  110 => 59,  105 => 6,  99 => 5,  93 => 69,  91 => 68,  89 => 59,  35 => 7,  33 => 6,  29 => 5,  23 => 1,);
     }
 }

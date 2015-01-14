@@ -4,17 +4,64 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <style>
+        .bouncing-boat {
+            margin-left: 0;
+            cursor: pointer;
+            -webkit-transition: margin-left 1s ease-in-out;
+            -moz-transition: margin-left 1s ease-in-out;
+            -o-transition: margin-left 1s ease-in-out;
+            -ms-transition: margin-left 1s ease-in-out;
+        }
+
+        /* переворот картинки через CSS */
+        .flip-horizontal {
+            -webkit-transform: scaleX(-1);
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -ms-transform: scaleX(-1);
+            filter: fliph; /* IE<10 */
+        }
+
+    </style>
 </head>
 <body>
+
+<script>
+    function bounceBoat(elem) {
+
+        elem.onclick = null; // следующий клик не испортит анимацию
+
+        function go() {
+            var marginLeft = parseInt(elem.style.marginLeft) || 0;
+
+            if (marginLeft == 0) {
+                elem.className = 'bouncing-boat';
+            } else {
+                elem.className = 'bouncing-boat flip-horizontal';
+            }
+
+            elem.style.marginLeft = (marginLeft ? 0 : 300) + 'px';
+
+        }
+
+        go();
+
+        elem.addEventListener('transitionend', go, false); /* на будущее */
+        elem.addEventListener('webkitTransitionEnd', go, false);
+        elem.addEventListener('mozTransitionEnd', go, false);
+        elem.addEventListener('oTransitionEnd', go, false);
+        elem.addEventListener('msTransitionEnd', go, false);
+    }
+</script>
     <h1 align="center">Welcome to FSN!!!</h1>
 <br><br>
 {% block body %}
     <div align = "center">
-    <img src="https://s-media-cache-ak0.pinimg.com/236x/5f/ca/87/5fca8757ca3b1c49e212a129326bcf2b.jpg" alt="Mountain View" style="width:250px;height:250px">
-        {#action="{{ path('star') }}#}
         <form action='films' method="post">
+        <img src="http://img3.wikia.nocookie.net/__cb20130614090906/spice-and-wolf/ru/images/thumb/6/6b/Horochibi.png/205px-Horochibi.png" class="bouncing-boat" >
             {{ form_widget(form) }}
+            <button onclick="bounceBoat(document.getElementsByTagName('img')[0])">Gooooooooo!</button>
         </form>
     </div>
 {% endblock %}

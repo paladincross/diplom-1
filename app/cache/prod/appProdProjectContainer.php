@@ -544,6 +544,10 @@ class appProdProjectContainer extends Container
             'sensio_framework_extra.converter.doctrine.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DoctrineParamConverter',
             'sensio_framework_extra.converter.datetime.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DateTimeParamConverter',
             'sensio_framework_extra.view.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
+            'fsn.get_page_html_data_manager.class' => 'FSN\\BotBundle\\Manager\\GetPageHtmlDataManager',
+            'fsn.anime_manager.class' => 'FSN\\BotBundle\\Manager\\AnimeManager',
+            'fsn.similar_anime_manager.class' => 'FSN\\BotBundle\\Manager\\SimilarAnimeManager',
+            'fsn.get_data_from_dom_object.class' => 'FSN\\BotBundle\\Parser\\GetDataFromDomObject',
             'console.command.ids' => array(
             ),
         );
@@ -623,6 +627,10 @@ class appProdProjectContainer extends Container
             'fragment.renderer.hinclude' => 'getFragment_Renderer_HincludeService',
             'fragment.renderer.inline' => 'getFragment_Renderer_InlineService',
             'fragment.renderer.ssi' => 'getFragment_Renderer_SsiService',
+            'fsn.anime_manager' => 'getFsn_AnimeManagerService',
+            'fsn.get_data_from_dom_object' => 'getFsn_GetDataFromDomObjectService',
+            'fsn.get_page_html_data_manager' => 'getFsn_GetPageHtmlDataManagerService',
+            'fsn.similar_anime_manager' => 'getFsn_SimilarAnimeManagerService',
             'http_kernel' => 'getHttpKernelService',
             'kernel' => 'getKernelService',
             'locale_listener' => 'getLocaleListenerService',
@@ -1106,6 +1114,22 @@ class appProdProjectContainer extends Container
         $instance->setFragmentPath('/_fragment');
         return $instance;
     }
+    protected function getFsn_AnimeManagerService()
+    {
+        return $this->services['fsn.anime_manager'] = new \FSN\BotBundle\Manager\AnimeManager($this->get('fsn.get_data_from_dom_object'));
+    }
+    protected function getFsn_GetDataFromDomObjectService()
+    {
+        return $this->services['fsn.get_data_from_dom_object'] = new \FSN\BotBundle\Parser\GetDataFromDomObject();
+    }
+    protected function getFsn_GetPageHtmlDataManagerService()
+    {
+        return $this->services['fsn.get_page_html_data_manager'] = new \FSN\BotBundle\Manager\GetPageHtmlDataManager();
+    }
+    protected function getFsn_SimilarAnimeManagerService()
+    {
+        return $this->services['fsn.similar_anime_manager'] = new \FSN\BotBundle\Manager\SimilarAnimeManager();
+    }
     protected function getHttpKernelService()
     {
         return $this->services['http_kernel'] = new \Symfony\Component\HttpKernel\DependencyInjection\ContainerAwareHttpKernel($this->get('event_dispatcher'), $this, new \Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver($this, $this->get('controller_name_converter'), $this->get('monolog.logger.request', ContainerInterface::NULL_ON_INVALID_REFERENCE)), $this->get('request_stack'));
@@ -1258,7 +1282,7 @@ class appProdProjectContainer extends Container
         $c = $this->get('security.authentication.manager');
         $d = $this->get('router', ContainerInterface::NULL_ON_INVALID_REFERENCE);
         $e = new \Symfony\Component\Security\Http\AccessMap();
-        return $this->services['security.firewall.map.context.default'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($e, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider()), 'default', $a, $this->get('event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE)), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '54b28f5a063b4', $a, $c), 3 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $e, $c)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), new \Symfony\Component\Security\Http\HttpUtils($d, $d), 'default', NULL, NULL, NULL, $a));
+        return $this->services['security.firewall.map.context.default'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($e, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider()), 'default', $a, $this->get('event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE)), 2 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '54b5bee7cd5c2', $a, $c), 3 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $e, $c)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), new \Symfony\Component\Security\Http\HttpUtils($d, $d), 'default', NULL, NULL, NULL, $a));
     }
     protected function getSecurity_Firewall_Map_Context_DevService()
     {
@@ -1704,7 +1728,7 @@ class appProdProjectContainer extends Container
     }
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('54b28f5a063b4')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('54b5bee7cd5c2')), true);
         $instance->setEventDispatcher($this->get('event_dispatcher'));
         return $instance;
     }

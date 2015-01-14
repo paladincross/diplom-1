@@ -1,9 +1,23 @@
 parameters:
-  fsn.similar_anime_manager.class: FSN\BotBundle\Manager\SimilarAnimeManager.php
+  fsn.get_page_html_data_manager.class: FSN\BotBundle\Manager\GetPageHtmlDataManager
+  fsn.anime_manager.class: FSN\BotBundle\Manager\AnimeManager
+  fsn.similar_anime_manager.class: FSN\BotBundle\Manager\SimilarAnimeManager
+
+  fsn.get_data_from_dom_object.class: FSN\BotBundle\Parser\GetDataFromDomObject
 
 services:
+  fsn.get_page_html_data_manager:
+       class: %fsn.get_page_html_data_manager.class%
+#       calls:
+#           - [setLink, ["%fsn.anime_link%"]]
+
+  fsn.anime_manager:
+       class: %fsn.anime_manager.class%
+       arguments:
+           - @fsn.get_data_from_dom_object
+
+  fsn.get_data_from_dom_object:
+       class: %fsn.get_data_from_dom_object.class%
+
   fsn.similar_anime_manager:
-            class: %fsn.similar_anime_manager.class%
-#    fs.n_bot.example:
-#        class: FSN\BotBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+         class: %fsn.similar_anime_manager.class%
