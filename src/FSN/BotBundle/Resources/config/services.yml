@@ -20,4 +20,6 @@ services:
        class: %fsn.get_data_from_dom_object.class%
 
   fsn.similar_anime_manager:
-         class: %fsn.similar_anime_manager.class%
+       class: %fsn.similar_anime_manager.class%
+       arguments:
+            - @fsn.get_data_from_dom_object

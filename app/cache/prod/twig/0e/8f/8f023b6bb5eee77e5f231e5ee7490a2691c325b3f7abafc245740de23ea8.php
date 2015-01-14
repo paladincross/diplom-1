@@ -58,7 +58,7 @@ class __TwigTemplate_0e8f8f023b6bb5eee77e5f231e5ee7490a2691c325b3f7abafc245740de
 <script>
     function bounceBoat(elem) {
 
-        elem.onclick = null; // следующий клик не испортит анимацию
+  //      elem.onclick = null; // следующий клик не испортит анимацию
 
         function go() {
             var marginLeft = parseInt(elem.style.marginLeft) || 0;

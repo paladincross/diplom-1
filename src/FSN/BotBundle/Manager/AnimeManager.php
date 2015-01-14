@@ -7,13 +7,14 @@ use FSN\BotBundle\Parser\GetDataFromDomObject;
 
 class AnimeManager extends GetPageHtmlDataManager
 {
-    protected   $data = array();
+  //  protected   $data = array();
     protected $getDataFromObject;
 
     function __construct(GetDataFromDomObject $object)
     {
         $this->getDataFromObject = $object;
     }
+
     public function getTitle()
     {
         return $this->query($this->parserData['title']);
@@ -39,6 +40,7 @@ class AnimeManager extends GetPageHtmlDataManager
     {
         return $this->query($this->parserData['mark']);
     }
+
     //echo
     public function getDescription()
     {
@@ -54,7 +56,7 @@ class AnimeManager extends GetPageHtmlDataManager
     public function getAllData()
     {
         $data['title'] = $this->getDataFromObject->getDataByNodeValue($this->getTitle());
-        $data['information'] = $this->getDataFromObject->getDataByNodeValue($this->getInformation());
+        $data['information'] =  $this->getDataFromObject->getDataByNodeValue($this->getInformation());
         $data['genre'] = $this->getDataFromObject->getDataByNodeValue($this->getGenre());
         $data['studio'] = $this->getDataFromObject->getDataByAttribute($this->getStudio(), 'title')[0];
 
@@ -63,6 +65,7 @@ class AnimeManager extends GetPageHtmlDataManager
         $data['description'] = $this->getDataFromObject->getDataByNodeValue($this->getDescription());
 
         $data['image'] = $this->getDataFromObject->getDataByAttribute($this->getImage(), 'src')[0];
+
         return $data;
     }
 

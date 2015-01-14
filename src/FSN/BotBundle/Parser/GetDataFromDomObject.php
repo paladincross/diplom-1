@@ -9,10 +9,11 @@ class GetDataFromDomObject
 {
     public function getDataByNodeValue(DOMNodeList $object)
     {
-        $data = '';
+        $data = array();
+        $i = 0;
         foreach ($object as $node)
         {
-           $data = $node->nodeValue;
+           $data[$i++] = $node->nodeValue;
         }
 
         return $data;

@@ -4,7 +4,6 @@ namespace FSN\BotBundle\Controller;
 
 use FSN\BotBundle\Entity\Link;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Config\Definition\Exception\Exception;
 
 error_reporting((error_reporting() ^ E_WARNING) ^ E_NOTICE);
 header('Content-Type: text/html; charset=utf-8');
@@ -35,11 +34,13 @@ class DefaultController extends Controller
       //  $url_similar = $_POST['form']['link'].'/similar';
 
         $pageHtmlData = $this->get('fsn.anime_manager');
+        $pageHtmlDataSimilarAnime = $this->get('fsn.similar_anime_manager');
 
         $pageHtmlData->setLink($url);
-
-        $_SESSION['data'] = $pageHtmlData->getAllData();
-        var_dump($_SESSION);
+        $_SESSION['data']['main'] = $pageHtmlData->getAllData();
+        $pageHtmlDataSimilarAnime->setLink($url."/similar");
+        $_SESSION['data']['similar'] = $pageHtmlDataSimilarAnime->getAllSimilarAnimeData();
+        var_dump($_SESSION['data']);
         $_SESSION['oldLink'] = $url;
         }
         else {
